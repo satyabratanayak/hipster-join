@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joining Hipster Call...</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 100vh;
+      background: #0f0f1a; color: #ffffff;
+      text-align: center; padding: 24px;
+    }
+    .icon { font-size: 48px; margin-bottom: 16px; }
+    h2 { font-size: 24px; margin-bottom: 8px; }
+    p  { color: #aaa; margin-bottom: 28px; font-size: 15px; }
+    a  {
+      background: #6C63FF; color: white;
+      padding: 14px 32px; border-radius: 12px;
+      text-decoration: none; font-size: 16px;
+      font-weight: 600;
+    }
+    a:hover { background: #5a52e0; }
+    .note { margin-top: 20px; font-size: 13px; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="icon">📞</div>
+  <h2>Joining Hipster Call...</h2>
+  <p>You'll be redirected to the app automatically.</p>
+  <a id="btn" href="#">Open Hipster App</a>
+  <p class="note">Make sure the Hipster app is installed on your device.</p>
+  <script>
+    const data = new URLSearchParams(window.location.search).get('data');
+    if (data) {
+      const link = 'hipstercall://join?data=' + encodeURIComponent(data);
+      document.getElementById('btn').href = link;
+      setTimeout(function() { window.location.href = link; }, 600);
+    } else {
+      document.getElementById('btn').textContent = 'Invalid Link';
+      document.querySelector('p').textContent = 'This link appears to be invalid or incomplete.';
+    }
+  </script>
+</body>
+</html>
