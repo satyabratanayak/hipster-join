@@ -34,9 +34,10 @@
   <a id="btn" href="#">Open Hipster App</a>
   <p class="note">Make sure the Hipster app is installed on your device.</p>
   <script>
-    const data = new URLSearchParams(window.location.search).get('data');
+    // Data is in the URL fragment (#) to avoid WhatsApp breaking at '='
+    var data = window.location.hash ? window.location.hash.substring(1) : null;
     if (data) {
-      const link = 'hipstercall://join?data=' + encodeURIComponent(data);
+      var link = 'hipstercall://join?data=' + encodeURIComponent(data);
       document.getElementById('btn').href = link;
       setTimeout(function() { window.location.href = link; }, 600);
     } else {
